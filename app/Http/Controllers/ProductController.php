@@ -14,7 +14,8 @@ class ProductController extends Controller
     {
         $products = Product::all();
 
-        return response()->json(['data' => $products[0]->subcategory]);
+        // return response()->json(['data' => $products[0]->subcategory]);
+        return response()->json(['data' => $products]);
     }
 
     /**
@@ -30,7 +31,25 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $product = Product::create($request->all());
+
+        // "title",
+        // "article",
+        // "description",
+        // "image",
+        // "brand",
+        // "category_id",
+        // "subcategory_id",
+        // "TNVED",
+        // "color",
+        // "extra_fileds",
+        // "bardoc",
+        // "sizes",
+        // "docs"
+        
+        return response()->json(['data'=> [ 'status' => 'Successfully added!' ]]);
+
     }
 
     /**
@@ -52,9 +71,26 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, string $id)
     {
-        //
+        $product = Product::findOrFail($id);
+
+        $product->update($request->all());
+        // "title",
+        // "article",
+        // "description",
+        // "image",
+        // "brand",
+        // "category_id",
+        // "subcategory_id",
+        // "TNVED",
+        // "color",
+        // "extra_fileds",
+        // "bardoc",
+        // "sizes",
+        // "docs"
+        
+        return response()->json(['data'=> [ 'status'=> 'Successfully edited!' ]]);
     }
 
     /**

@@ -14,6 +14,7 @@ class Product extends Model
         "title",
         "article",
         "description",
+        "image",
         "brand",
         "category_id",
         "subcategory_id",

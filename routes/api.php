@@ -17,12 +17,16 @@ use App\Http\Controllers\ProductController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
 Route::get('category', [CategoryController::class, 'index']);
 Route::post('category', [CategoryController::class, 'store']);
 
 Route::get('subcategory', [SubcategoryController::class, 'index']);
-Route::get('products', [ProductController::class, 'index']);
+// Route::get('products', [ProductController::class, 'index']);
+
+Route::resource('products', ProductController::class); // all
+
+Route::post('products/{id}', [ProductController::class, 'update'])->name('edit');

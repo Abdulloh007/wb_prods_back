@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('title', 80);
             $table->string('article', 80);
             $table->text('description')->nullable();
+            $table->text('image')->nullable();
             $table->string('brand', 80)->nullable();
             $table->foreignIdFor(Category::class);
             $table->foreignIdFor(Subcategory::class);
