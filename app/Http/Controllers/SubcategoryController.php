@@ -14,7 +14,7 @@ class SubcategoryController extends Controller
     {
         $subcategories = Subcategory::all();
 
-        return response()->json(['data' => $subcategories[0]->category]);
+        return response()->json(['data' => $subcategories], 200);
     }
 
     /**
