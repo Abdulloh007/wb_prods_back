@@ -16,6 +16,7 @@ class Product extends Model
         "description",
         "image",
         "brand",
+        "tags",
         "category_id",
         "subcategory_id",
         "TNVED",
