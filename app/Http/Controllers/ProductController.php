@@ -32,7 +32,16 @@ class ProductController extends Controller
     public function store(Request $request)
     {
 
+        $input = $request->all();
+        
+        if( isset($input['image']) ) {
+            $image_path = $request->file('image')->store('images', 'public');
+            $input['image'] = $image_path;
+        }
+
         $product = Product::create($request->all());
+
+
 
         // "title",
         // "article",
@@ -48,7 +57,8 @@ class ProductController extends Controller
         // "sizes",
         // "docs"
         
-        return response()->json(['data'=> [ 'status' => 'Successfully added!' ]]);
+        return response()->json(['data'=> [ 'status' => $input['image'] ]]);
+        // return response()->json(['data'=> [ 'status' => 'Successfully added!' ]]);
 
     }
 
