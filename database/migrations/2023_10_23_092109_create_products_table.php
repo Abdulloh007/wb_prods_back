@@ -24,7 +24,7 @@ return new class extends Migration
             $table->foreignIdFor(Category::class);
             $table->foreignIdFor(Subcategory::class);
             $table->string('TNVED', 80)->nullable();
-            $table->string('color', 80)->nullable();
+            $table->string('color')->nullable();
             $table->json('extra_fileds')->nullable();
             $table->json('bardoc')->nullable();
             $table->json('sizes')->nullable();

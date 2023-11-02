@@ -28,5 +28,7 @@ Route::get('subcategory', [SubcategoryController::class, 'index']);
 // Route::get('products', [ProductController::class, 'index']);
 
 Route::resource('products', ProductController::class); // all
-
 Route::post('products/{id}', [ProductController::class, 'update'])->name('edit');
+
+
+Route::get('barcode-generate', [ProductController::class, 'generationBarcode']);

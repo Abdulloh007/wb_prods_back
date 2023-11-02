@@ -34,13 +34,11 @@ class ProductController extends Controller
 
         $input = $request->all();
         
-        if( isset($input['image']) ) {
-            $image_path = $request->file('image')->store('images', 'public');
-            $input['image'] = $image_path;
-        }
+        $image_path = $request->file('image')->store('images', 'public');
+        $input['image'] = $image_path;
 
-        $product = Product::create($request->all());
-
+        
+        $product = Product::create($input);
 
 
         // "title",
@@ -57,8 +55,7 @@ class ProductController extends Controller
         // "sizes",
         // "docs"
         
-        return response()->json(['data'=> [ 'status' => $input['image'] ]]);
-        // return response()->json(['data'=> [ 'status' => 'Successfully added!' ]]);
+        return response()->json(['data'=> [ 'status' => 'Successfully added!' ]]);
 
     }
 
@@ -76,6 +73,28 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         //
+    }
+
+
+    public function generationBarcode(Request $request){
+        $input = $request->all();
+        
+        $products = Product::all();
+
+        $barcode = rand(100000000000,999999999999);
+        foreach($products as $product){
+            $bardoc = json_decode($product->bardoc);
+            foreach($bardoc as $bardoc_arr){
+               if($barcode==$bardoc_arr->barcode){
+                    $barcode = rand(100000000000,999999999999);
+               } 
+            }  
+        }
+
+
+        return response()->json(['barcode'=> [ $barcode ] ]);
+
+
     }
 
     /**
