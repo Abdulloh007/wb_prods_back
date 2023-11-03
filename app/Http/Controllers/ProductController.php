@@ -34,12 +34,12 @@ class ProductController extends Controller
 
         $input = $request->all();
         
-        $image_path = $request->file('image')->store('images', 'public');
-        $input['image'] = $image_path;
-
+        if($request->hasFile('image')){
+            $image_path = $request->file('image')->store('images', 'public');
+            $input['image'] = $image_path;
+        }
         
         $product = Product::create($input);
-
 
         // "title",
         // "article",
